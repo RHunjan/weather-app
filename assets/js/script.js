@@ -3,7 +3,8 @@
  var displayCityName = document.querySelector("#cityName");
  var cityTempEl = document.querySelector("#temp");
  var cityWindEl =document.querySelector("#wind");
- var cityHumidityEl = document.querySelector("uv_index");
+ var cityHumidityEl = document.querySelector("#humidity");
+ var cityUvEl = document.querySelector("#uv_index");
 
  
 //function to get values from data returned
@@ -27,8 +28,11 @@ var getWeather = function(){
             // display data
            displayCityName.innerHTML = cityName;
            cityTempEl.innerHTML = "Temp: " + cityTemp + " F";
-           cityWindEl.innterHTML = "Wind: " + cityWind + " MPH";
-           
+           cityWindEl.innerHTML = "Wind: " + cityWind + " MPH";
+           cityHumidityEl.innerHTML = "Humidity: " + cityHumidity + " %";
+
+
+
         })
         
         .catch(function(error){
@@ -42,7 +46,9 @@ var uvIndex = function(lat,lon){
     fetch("https://api.openweathermap.org/data/2.5/onecall?lat="+ lat + "&lon=" +lon +"&exclude=hourly,daily&appid=d564b912988e6af5b9f3c1b180526f25")
     .then(function(response){
         response.json().then(function(data){
-            var uviIndex = data['current']['uvi'];
+            var uvIndex = data['current']['uvi'];
+            cityUvEl.innerHTML = `UV Index: ${uvIndex}`;
+
             console.log(uviIndex);
         })
     })

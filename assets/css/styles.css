@@ -16,3 +16,7 @@ header {
 margin-top: 10px;
 background-color: bisque;
 }
+
+.snapshot {
+    border: solid black;
+}
