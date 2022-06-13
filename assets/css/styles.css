@@ -16,3 +16,8 @@ header {
 margin-top: 10px;
 background-color: bisque;
 }
+
+ .card-style {
+    margin-top: 5px;
+    max-width: 30%;
+ }
