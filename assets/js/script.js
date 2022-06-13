@@ -94,6 +94,8 @@ var getUvIndex = function(lat,lon){
 buttonEl.addEventListener('click', function(){
 
  getWeather();
+ inputCityName.value = "";
+ dailyForecastEl.innerHTML = "";
 
 });
 
