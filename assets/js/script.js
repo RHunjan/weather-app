@@ -7,6 +7,20 @@ var cityWindEl =document.querySelector("#wind");
 var cityHumidityEl = document.querySelector("#humidity");
 var cityUvEl = document.querySelector("#uv_index");
  var dailyForecastEl = document.querySelector(".forecast_cards");
+ 
+ //setting current date
+ var date = moment().format("M/D/YYYY");
+ console.log(date);
+ var day1 =moment().add(1,"days");
+ var day2 =moment().add(2,"days");
+ var day3 =moment().add(3,"days");
+ var day4 =moment().add(4,"days");
+ var day5 =moment().add(5,"days");
+ 
+
+ var weeklyForecastDays = [day1.format("M/D/YYYY"), day2.format("M/D/YYYY"), day3.format("M/D/YYYY"), day4.format("M/D/YYYY"), day5.format("M/D/YYYY")];
+ console.log(weeklyForecastDays);
+
 
 var getWeather = function(){
 
@@ -29,7 +43,7 @@ var getWeather = function(){
             //forecast(cityName); 
 
          // display data
-           displayCityName.innerHTML = cityName;
+           displayCityName.innerHTML = `${cityName} ${date}`;
            cityTempEl.innerHTML = "Temp: " + cityTemp + " F";
            cityWindEl.innerHTML = "Wind: " + cityWind + " MPH";
            cityHumidityEl.innerHTML = "Humidity: " + cityHumidity + " %";
@@ -40,7 +54,7 @@ var getWeather = function(){
 
 }; // end of getWeather
 
-// fetch to get uvindex data
+// fetch to get uvindex data and 5 day forecast
 var getUvIndex = function(lat,lon){
     fetch("https://api.openweathermap.org/data/2.5/onecall?lat="+ lat + "&lon=" +lon +"&exclude=minutely,hourly&appid=d564b912988e6af5b9f3c1b180526f25")
     .then(function(response){
@@ -66,7 +80,7 @@ var getUvIndex = function(lat,lon){
                 var displayHumidity = document.createElement('p')
 
                  //add content to elements
-                displayDate.innerHTML = `test`
+                displayDate.innerHTML = weeklyForecastDays[i];
                 displayTemp.innerHTML = `Temp: ${dailyWeather.temp} F`;
                 displayWind.innerHTML = `Wind: ${dailyWeather.windSpeed} MPH`;
                 displayHumidity.innerHTML = `Humidity: ${dailyWeather.humidity} %`;
