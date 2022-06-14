@@ -21,3 +21,11 @@ background-color: bisque;
     margin-top: 5px;
     max-width: 30%;
  }
+
+ .history-buttons {
+    color: red;
+ }
+
+ .history-buttons button {
+    margin: 5px;
+ }

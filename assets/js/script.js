@@ -55,6 +55,7 @@ var getWeather = function(){
 
            cityArr.push(cityName);
             localStorage.setItem('cityHistory', JSON.stringify(cityArr));
+            console.log(cityArr);
        
         }) // end of function(data)
 
@@ -94,7 +95,7 @@ var getUvIndex = function(lat,lon){
                 var displayWind = document.createElement('p');
                 var displayHumidity = document.createElement('p')
 
-                 //add content to elements
+                                 //add content to elements
                 displayDate.innerHTML = weeklyForecastDays[i];
                 displayTemp.innerHTML = `Temp: ${dailyWeather.temp} F`;
                 displayWind.innerHTML = `Wind: ${dailyWeather.windSpeed} MPH`;
@@ -125,13 +126,28 @@ var getUvIndex = function(lat,lon){
     console.log(parsedCities);
 
 // add buttons from localStorage
-    for (var i=0; i<parsedCities.length; i++){
-            var searchButton = document.createElement('button');
-        searchButton.innerHTML = parsedCities[0];
-        historyButtonsEl.appendChild(searchButton);
+
+    //var addHistory = function(){
+        for (var i=0; i<parsedCities.length; i++){
+        var searchButton = document.createElement('button');
+        searchButton.classList.add("history-buttons");
+        searchButton.innerHTML = parsedCities[i];
+        historyButtonsEl.appendChild(searchButton); 
     }
+
+    //};
+ 
+    
     
 // click on search history button to run getWeather with cityname
+    historyButtonsEl.addEventListener("click", function(event){
+        if (event.target.className === "history-buttons"){
+             console.log("i clikced a button");
+        }
+        
+        
+       
+    });
 
 
 
