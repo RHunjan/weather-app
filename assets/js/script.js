@@ -7,30 +7,36 @@ var cityWindEl =document.querySelector("#wind");
 var cityHumidityEl = document.querySelector("#humidity");
 var cityUvEl = document.querySelector("#uv_index");
  var dailyForecastEl = document.querySelector(".forecast_cards");
+ var historyButtonsEl = document.querySelector(".history-buttons");
  
- //setting current date
+ //setting current and forecast dates
  var date = moment().format("M/D/YYYY");
- console.log(date);
  var day1 =moment().add(1,"days");
  var day2 =moment().add(2,"days");
  var day3 =moment().add(3,"days");
  var day4 =moment().add(4,"days");
  var day5 =moment().add(5,"days");
+
+ var cityArr = [];
+ 
  
 
  var weeklyForecastDays = [day1.format("M/D/YYYY"), day2.format("M/D/YYYY"), day3.format("M/D/YYYY"), day4.format("M/D/YYYY"), day5.format("M/D/YYYY")];
- console.log(weeklyForecastDays);
-
+ 
 
 var getWeather = function(){
 
-    cityName = inputCityName.value;
-    console.log(cityName);
+  var  cityName = inputCityName.value;
+    //console.log(cityName);
 
     fetch("https://api.openweathermap.org/data/2.5/weather?q="+ cityName +"&APPID=d564b912988e6af5b9f3c1b180526f25")
     .then(function(response){
-        response.json().then(function(data){
-            console.log(data);
+
+        if(response.ok){
+
+            response.json().then(function(data){
+          
+           // console.log(data);
         //capture data from fetch
             var cityName = data['name'];
             var cityTemp = data['main']['temp'];
@@ -38,18 +44,27 @@ var getWeather = function(){
             var cityHumidity = data['main']['humidity'];
             var lat = data['coord']['lat'];
             var lon = data['coord']['lon'];
-            console.log(cityName, cityTemp, cityWind, cityHumidity, lat, lon);   
+           // console.log(cityName, cityTemp, cityWind, cityHumidity, lat, lon);   
             getUvIndex(lat,lon); 
-            //forecast(cityName); 
-
-         // display data
+           
+           // display data
            displayCityName.innerHTML = `${cityName} ${date}`;
            cityTempEl.innerHTML = "Temp: " + cityTemp + " F";
            cityWindEl.innerHTML = "Wind: " + cityWind + " MPH";
            cityHumidityEl.innerHTML = "Humidity: " + cityHumidity + " %";
+
+           cityArr.push(cityName);
+            localStorage.setItem('cityHistory', JSON.stringify(cityArr));
        
         }) // end of function(data)
+
+        } else {
+            alert('Enter valid city');
+        }
+        
+      
     })
+
     
 
 }; // end of getWeather
@@ -96,12 +111,30 @@ var getUvIndex = function(lat,lon){
 
 
             
-                console.log(dailyWeather);
+                //console.log(dailyWeather);
             
             }
         })
     })
 }; // end of uvindex
+
+// get data from local storage
+
+    var cities = localStorage.getItem('cityHistory');
+    var parsedCities = JSON.parse(cities);
+    console.log(parsedCities);
+
+// add buttons from localStorage
+    for (var i=0; i<parsedCities.length; i++){
+            var searchButton = document.createElement('button');
+        searchButton.innerHTML = parsedCities[0];
+        historyButtonsEl.appendChild(searchButton);
+    }
+    
+// click on search history button to run getWeather with cityname
+
+
+
 
 
 
