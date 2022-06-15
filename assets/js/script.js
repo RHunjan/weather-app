@@ -8,6 +8,7 @@ var cityHumidityEl = document.querySelector("#humidity");
 var cityUvEl = document.querySelector("#uv_index");
  var dailyForecastEl = document.querySelector(".forecast_cards");
  var historyButtonsEl = document.querySelector(".history-buttons");
+ var iconEl = document.querySelector("#icon");
  
  //setting current and forecast dates
  var date = moment().format("M/D/YYYY");
@@ -39,6 +40,7 @@ var getWeather = function(){
       
         //capture data from fetch
             var cityName = data['name'];
+            var cityIcon = data['weather'][0]['icon'];
             var cityTemp = data['main']['temp'];
             var cityWind = data['wind']['speed'];
             var cityHumidity = data['main']['humidity'];
@@ -49,6 +51,7 @@ var getWeather = function(){
            
            // display data
            displayCityName.innerHTML = `${cityName} ${date}`;
+              iconEl.innerHTML = `<img src="/assets/icons/${cityIcon}.png">`;
            cityTempEl.innerHTML = "Temp: " + cityTemp + " F";
            cityWindEl.innerHTML = "Wind: " + cityWind + " MPH";
            cityHumidityEl.innerHTML = "Humidity: " + cityHumidity + " %";
@@ -145,17 +148,19 @@ var getUvIndex = function(lat,lon){
          response.json().then(function(data){
       
         //capture data from fetch
+            var cityIcon = data['weather'][0]['icon'];
             var cityName = data['name'];
             var cityTemp = data['main']['temp'];
             var cityWind = data['wind']['speed'];
             var cityHumidity = data['main']['humidity'];
             var lat = data['coord']['lat'];
             var lon = data['coord']['lon'];
-           // console.log(cityName, cityTemp, cityWind, cityHumidity, lat, lon);   
+            console.log(cityName, cityTemp, cityWind, cityHumidity, lat, lon);   
          
            
            // display data
-           displayCityName.innerHTML = `${cityName  } ${date}`;
+           displayCityName.innerHTML = `${cityName} ${date}`;
+           iconEl.innerHTML = `<img src="/assets/icons/${cityIcon}.png">`;
            cityTempEl.innerHTML = "Temp: " + cityTemp + " F";
            cityWindEl.innerHTML = "Wind: " + cityWind + " MPH";
            cityHumidityEl.innerHTML = "Humidity: " + cityHumidity + " %";
