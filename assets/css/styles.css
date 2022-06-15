@@ -14,7 +14,10 @@ header {
 
 .btn {
 margin-top: 10px;
-background-color: bisque;
+background-color: blue;
+color: white;
+
+width: 350px;
 }
 
  .card-style {
@@ -29,4 +32,6 @@ background-color: bisque;
  .history-buttons button {
     margin: 5px;
     padding:10px;
+    width: 350px;
+    
  }

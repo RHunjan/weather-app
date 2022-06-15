@@ -160,11 +160,7 @@ var getUvIndex = function(lat,lon){
            cityWindEl.innerHTML = "Wind: " + cityWind + " MPH";
            cityHumidityEl.innerHTML = "Humidity: " + cityHumidity + " %";
 
-           cityArr.push(cityName);
-            localStorage.setItem('cityHistory', JSON.stringify(cityArr));
-            console.log(cityArr);
-
-             getUvIndex(lat,lon); 
+            getUvIndex(lat,lon); 
        
         }) // end of function(data)
 
