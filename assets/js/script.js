@@ -17,16 +17,17 @@ var cityUvEl = document.querySelector("#uv_index");
  var day4 =moment().add(4,"days");
  var day5 =moment().add(5,"days");
 
+ // save cities in local storage
  var cityArr = [];
  
  
 
  var weeklyForecastDays = [day1.format("M/D/YYYY"), day2.format("M/D/YYYY"), day3.format("M/D/YYYY"), day4.format("M/D/YYYY"), day5.format("M/D/YYYY")];
- 
+
 
 var getWeather = function(){
+     var  cityName = inputCityName.value;
 
-  var  cityName = inputCityName.value;
     //console.log(cityName);
 
     fetch("https://api.openweathermap.org/data/2.5/weather?q="+ cityName +"&APPID=d564b912988e6af5b9f3c1b180526f25")
@@ -35,8 +36,7 @@ var getWeather = function(){
         if(response.ok){
 
             response.json().then(function(data){
-          
-           // console.log(data);
+      
         //capture data from fetch
             var cityName = data['name'];
             var cityTemp = data['main']['temp'];
@@ -62,11 +62,8 @@ var getWeather = function(){
         } else {
             alert('Enter valid city');
         }
-        
-      
+ 
     })
-
-    
 
 }; // end of getWeather
 
@@ -137,17 +134,58 @@ var getUvIndex = function(lat,lon){
 
     //};
  
+// fetch with saved city
+
+    var savedCity = function(searchTerm){
+      
+        
+          fetch("https://api.openweathermap.org/data/2.5/weather?q="+ searchTerm +"&APPID=d564b912988e6af5b9f3c1b180526f25")
+    .then(function(response){
+
+         response.json().then(function(data){
+      
+        //capture data from fetch
+            var cityName = data['name'];
+            var cityTemp = data['main']['temp'];
+            var cityWind = data['wind']['speed'];
+            var cityHumidity = data['main']['humidity'];
+            var lat = data['coord']['lat'];
+            var lon = data['coord']['lon'];
+           // console.log(cityName, cityTemp, cityWind, cityHumidity, lat, lon);   
+         
+           
+           // display data
+           displayCityName.innerHTML = `${cityName  } ${date}`;
+           cityTempEl.innerHTML = "Temp: " + cityTemp + " F";
+           cityWindEl.innerHTML = "Wind: " + cityWind + " MPH";
+           cityHumidityEl.innerHTML = "Humidity: " + cityHumidity + " %";
+
+           cityArr.push(cityName);
+            localStorage.setItem('cityHistory', JSON.stringify(cityArr));
+            console.log(cityArr);
+
+             getUvIndex(lat,lon); 
+       
+        }) // end of function(data)
+
+        
+
+    })
+
+
+    }; // end of saved city
     
     
 // click on search history button to run getWeather with cityname
     historyButtonsEl.addEventListener("click", function(event){
         if (event.target.className === "history-buttons"){
-             console.log("i clikced a button");
+            var searchTerm = event.target.innerHTML;
+            savedCity(searchTerm);
         }
-        
-        
-       
+
     });
+
+
 
 
 
