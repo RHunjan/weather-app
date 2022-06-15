@@ -85,11 +85,13 @@ var getUvIndex = function(lat,lon){
                 var dailyWeather = {
                     temp: data['daily'][i]['temp']['day'],
                     humidity: data['daily'][i]['humidity'],
-                    windSpeed: data['daily'][i]['wind_speed']
-                };
+                    windSpeed: data['daily'][i]['wind_speed'],
+                    dailyIcon: data['daily'][i]['weather'][0]['icon']
+                  };
 
                 //create elements
                 var dateCard = document.createElement('div');
+                var iconImage = document.createElement('img');
                 var displayDate = document.createElement('h4');
                 var displayTemp = document.createElement('p');
                 var displayWind = document.createElement('p');
@@ -97,6 +99,7 @@ var getUvIndex = function(lat,lon){
 
                                  //add content to elements
                 displayDate.innerHTML = weeklyForecastDays[i];
+                iconImage.src = `/assets/icons/${dailyWeather.dailyIcon}.png`;
                 displayTemp.innerHTML = `Temp: ${dailyWeather.temp} F`;
                 displayWind.innerHTML = `Wind: ${dailyWeather.windSpeed} MPH`;
                 displayHumidity.innerHTML = `Humidity: ${dailyWeather.humidity} %`;
@@ -106,6 +109,7 @@ var getUvIndex = function(lat,lon){
                  dateCard.append(displayTemp);
                  dateCard.append(displayWind);
                  dateCard.append(displayHumidity);
+                 dateCard.append(iconImage);
 
                   //append dateCard to dailyForecast 
                 dailyForecastEl.appendChild(dateCard);
