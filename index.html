@@ -26,9 +26,11 @@
                             <input type="text" class="inputName" >
                             <button type="submit" class="btn">Search</button>
                         </div>
-                        <div>history</div>
+                        <div class="history-buttons"></div>
                     
                     </div>
+
+                
                  
                   
 
@@ -36,10 +38,10 @@
                   
                     <div class="col-sm-12 col-md-8">
                         <div class="border border-primary">
-                            <div >
-                                <h3 id="cityName"></h3>
-                                <p>icon</p>
-                            </div>
+                            <div class="styleHeader">
+                                <h3 id="cityName"> </h3>
+                                <p class="icon" id="icon"></p>
+                             </div>
                             <div class="daily_forecast">
                                 <p id="temp"></p>
                                 <p id="wind"></p>
@@ -47,12 +49,10 @@
                                 <p id="uv_index"> </p>
                                 
                             </div>
-                            
+                         </div>
 
-                        </div>
                         <div class="forecast_cards">
-                            <div class="card card-style">Something</div>
-                            
+                                              
                         </div>
                     </div>
             </div>
@@ -63,6 +63,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
         integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
         crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
