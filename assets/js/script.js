@@ -51,7 +51,7 @@ var getWeather = function(){
            
            // display data
            displayCityName.innerHTML = `${cityName} ${date}`;
-             iconEl.innerHTML = `<img src="/assets/icons/${cityIcon}.png">`;
+             iconEl.innerHTML = `<img src="./assets/icons/${cityIcon}.png">`;
            cityTempEl.innerHTML = "Temp: " + cityTemp + " F";
            cityWindEl.innerHTML = "Wind: " + cityWind + " MPH";
            cityHumidityEl.innerHTML = "Humidity: " + cityHumidity + " %";
@@ -110,7 +110,7 @@ var getUvIndex = function(lat,lon){
 
                                  //add content to elements
                 displayDate.innerHTML = weeklyForecastDays[i];
-                iconImage.src = `/assets/icons/${dailyWeather.dailyIcon}.png`;
+                iconImage.src = `./assets/icons/${dailyWeather.dailyIcon}.png">`;
                 displayTemp.innerHTML = `Temp: ${dailyWeather.temp} F`;
                 displayWind.innerHTML = `Wind: ${dailyWeather.windSpeed} MPH`;
                 displayHumidity.innerHTML = `Humidity: ${dailyWeather.humidity} %`;
@@ -179,7 +179,7 @@ var getUvIndex = function(lat,lon){
            
            // display data
            displayCityName.innerHTML = `${cityName} ${date}`;
-           iconEl.innerHTML = `<img src="/assets/icons/${cityIcon}.png">`;
+           iconEl.innerHTML = `<img src="./assets/icons/${cityIcon}.png">`;
            cityTempEl.innerHTML = "Temp: " + cityTemp + " F";
            cityWindEl.innerHTML = "Wind: " + cityWind + " MPH";
            cityHumidityEl.innerHTML = "Humidity: " + cityHumidity + " %";
