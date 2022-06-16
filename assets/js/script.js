@@ -51,7 +51,7 @@ var getWeather = function(){
            
            // display data
            displayCityName.innerHTML = `${cityName} ${date}`;
-              iconEl.innerHTML = `<img src="/assets/icons/${cityIcon}.png">`;
+             iconEl.innerHTML = `<img src="/assets/icons/${cityIcon}.png">`;
            cityTempEl.innerHTML = "Temp: " + cityTemp + " F";
            cityWindEl.innerHTML = "Wind: " + cityWind + " MPH";
            cityHumidityEl.innerHTML = "Humidity: " + cityHumidity + " %";
@@ -142,14 +142,17 @@ var getUvIndex = function(lat,lon){
     console.log(parsedCities);
 
 // add buttons from localStorage
+    if (parsedCities) {
 
-    //var addHistory = function(){
+        //var addHistory = function(){
         for (var i=0; i<parsedCities.length; i++){
         var searchButton = document.createElement('button');
         searchButton.classList.add("history-buttons");
         searchButton.innerHTML = parsedCities[i];
         historyButtonsEl.appendChild(searchButton); 
     }
+    }
+    
 
     //};
  
