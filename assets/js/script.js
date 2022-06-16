@@ -92,6 +92,7 @@ var getUvIndex = function(lat,lon){
                 //create elements
                 var dateCard = document.createElement('div');
                 var iconImage = document.createElement('img');
+            
                 var displayDate = document.createElement('h4');
                 var displayTemp = document.createElement('p');
                 var displayWind = document.createElement('p');
@@ -106,10 +107,11 @@ var getUvIndex = function(lat,lon){
 
                 //append content to dateCard
                  dateCard.append(displayDate);
+                 dateCard.append(iconImage);
                  dateCard.append(displayTemp);
                  dateCard.append(displayWind);
                  dateCard.append(displayHumidity);
-                 dateCard.append(iconImage);
+              
 
                   //append dateCard to dailyForecast 
                 dailyForecastEl.appendChild(dateCard);
@@ -186,8 +188,9 @@ var getUvIndex = function(lat,lon){
         if (event.target.className === "history-buttons"){
             var searchTerm = event.target.innerHTML;
             savedCity(searchTerm);
+            dailyForecastEl.innerHTML = "";
         }
-
+      
     });
 
 

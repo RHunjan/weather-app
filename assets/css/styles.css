@@ -16,22 +16,45 @@ header {
 margin-top: 10px;
 background-color: blue;
 color: white;
-
 width: 350px;
 }
 
- .card-style {
-    margin-top: 5px;
-    max-width: 30%;
- }
-
- .history-buttons {
-    color: red;
- }
-
- .history-buttons button {
+.history-buttons button {
     margin: 5px;
     padding:10px;
     width: 350px;
+    border-radius: 5%;
+    border: none;
     
+ }
+
+ .icon img {
+   max-width: 10%;
+   display: inline-block;
+ 
+ }
+
+.forecast_cards div {
+
+   max-width: 30%;
+   display:inline-block;
+   color:white;
+   background-color: grey;
+   margin: 10px;
+ 
+ }
+
+ .forecast_cards img {
+   max-width: 25%;
+   background-color: white;
+
+   
+ }
+
+ .daily_forecast {
+   margin-left: 25px;
+ }
+
+ .styleHeader {
+   margin-left: 25px;
  }
