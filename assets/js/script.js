@@ -78,6 +78,16 @@ var getUvIndex = function(lat,lon){
             var uvIndex = data['current']['uvi'];
             cityUvEl.innerHTML = `UV Index: ${uvIndex}`;
 
+            //change color for uv index
+            console.log(uvIndex);
+            if (uvIndex < 2){
+                cityUvEl.style.backgroundColor = "green";
+            } else if (uvIndex > 2 && uvIndex < 5 ){
+                cityUvEl.style.backgroundColor = "yellow"; 
+            } else {
+                 cityUvEl.style.backgroundColor = "red"; 
+            }
+
             // loop through days
             for (var i = 0; i<5; i++){
 

@@ -58,3 +58,8 @@ width: 350px;
  .styleHeader {
    margin-left: 25px;
  }
+
+ #uv_index {
+  
+   max-width: 100px;
+ }
